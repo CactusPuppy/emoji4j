@@ -211,7 +211,21 @@ public class EmojiUtils extends AbstractEmoji {
 	 * @return shortcodified string
 	 */
 	public static String shortCodify(String text) {
-		String emojifiedText = emojify(text);
+		return shortCodify(text, false);
+	}
+
+	/**
+	 * Converts emojis and optionally hex, decimal htmls, and emoticons in a string to short codes
+	 *
+	 * @param text String to shortcodify
+	 * @param ignoreTextEntities Whether to process text entities (hex, decimal htmls, and emoticons)
+	 * @return shortcodified string
+	 */
+	public static String shortCodify(String text, boolean ignoreTextEntities) {
+		String emojifiedText = text;
+		if (!ignoreTextEntities) {
+			emojifiedText = emojify(text);
+		}
 
 		// TODO - this approach is ugly, need to find an optimal way to replace
 		// the emojis
